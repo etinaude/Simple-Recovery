@@ -1,2 +1,2 @@
-# Simple-Grabber
+# Simple-Recovery
 A simple password recovery tool written in C# that recovers passwords from various sources
