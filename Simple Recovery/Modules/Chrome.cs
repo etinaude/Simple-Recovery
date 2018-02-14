@@ -54,15 +54,15 @@ namespace Simple_Recovery.Modules
 
                 // Build a list of objects from the database query
 
-                var users = connection.Query<User>(statement);
+                var entries = connection.Query<User>(statement);
 
-                foreach (var user in users)
+                foreach (var entry in entries)
                 {
                     // Decrypt the password
 
-                    var decryptedPassword = Encoding.UTF8.GetString(ProtectedData.Unprotect(user.Password_value, null, DataProtectionScope.CurrentUser));
+                    var decryptedPassword = Encoding.UTF8.GetString(ProtectedData.Unprotect(entry.Password_value, null, DataProtectionScope.CurrentUser));
 
-                    databaseEntries.AppendLine($"{user.Action_url} : {user.Username_value} : {decryptedPassword}");
+                    databaseEntries.AppendLine($"{entry.Action_url} : {entry.Username_value} : {decryptedPassword}");
                 }
             }
 
