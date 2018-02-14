@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.IO;
 
-namespace Simple_Grabber
+namespace Simple_Recovery
 {
     public class Grabber
     {
@@ -11,7 +11,7 @@ namespace Simple_Grabber
         {
             if (!Directory.Exists(ConfigurationManager.AppSettings["path"]))
             {
-               Directory.CreateDirectory(ConfigurationManager.AppSettings["path"]);
+                Directory.CreateDirectory(ConfigurationManager.AppSettings["path"]);
             }
         }
 
@@ -23,3 +23,4 @@ namespace Simple_Grabber
         }
     }
 }
+
