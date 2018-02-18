@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Simple_Recovery
 {
-    public static class Grabber
+    public static class Recovery
     {
         // Initialize the directory if it doesn't exist
 

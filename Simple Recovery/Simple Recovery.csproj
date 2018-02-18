@@ -66,7 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Grabber.cs" />
+    <Compile Include="Recovery.cs" />
     <Compile Include="Modules\Chrome.cs" />
     <Compile Include="Modules\Wifi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
