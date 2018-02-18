@@ -9,6 +9,8 @@ namespace Simple_Recovery.Modules
     public static class Wifi
     {
 
+        // Get a list of saved profiles
+        
         private static IEnumerable<string> GetProfiles()
         {
             var profileList = new List<string>();
@@ -68,6 +70,8 @@ namespace Simple_Recovery.Modules
             return profileList;
         }
 
+        // Get the password from a profile
+        
         private static string GetPassword(string profile)
         {
             var password = "";
@@ -100,9 +104,7 @@ namespace Simple_Recovery.Modules
                         
                         var formattedString = removeSpaces.Substring(removeSpaces.IndexOf(":", StringComparison.Ordinal) + 1);
 
-                        // If profile does not have a password return no password else return the password
-                        
-                        password = formattedString.Length <= 0 ? "No Password" : formattedString;
+                        password = formattedString;
                     }
                 }
             }
@@ -110,6 +112,8 @@ namespace Simple_Recovery.Modules
             return password;
         }
 
+        // Write the SSID and password to a file
+        
         public static void WriteToFile(string path)
         {
             var passwords = new StringBuilder();
