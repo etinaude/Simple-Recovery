@@ -8,7 +8,6 @@ namespace Simple_Recovery.Modules
 {
     public static class Wifi
     {
-
         // Get a list of saved profiles
         
         private static IEnumerable<string> GetProfiles()
