@@ -18,31 +18,31 @@ namespace Simple_Recovery.Modules
 
     public static class Chrome
     {
-        // Default folder path for the database
-
-        private static readonly string FolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default";
-
         // Get the entries within the database
 
         private static StringBuilder GetDatabaseEntries()
         {
+            // Default folder path for the database
+            
+            var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Google\Chrome\User Data\Default";
+            
             var databaseEntries = new StringBuilder();
 
             // Create a copy of the database - Chrome has the original database open and is therefore locked
 
-            if (File.Exists(FolderPath + @"\Login Data Copy"))
+            if (File.Exists(folderPath + @"\Login Data Copy"))
             {
-                File.Delete(FolderPath + @"\Login Data Copy");
+                File.Delete(folderPath + @"\Login Data Copy");
 
-                File.Copy(FolderPath + @"\Login Data", FolderPath + @"\Login Data Copy");
+                File.Copy(folderPath + @"\Login Data", folderPath + @"\Login Data Copy");
             }
 
             else
             {
-                File.Copy(FolderPath + @"\Login Data", FolderPath + @"\Login Data Copy");
+                File.Copy(folderPath + @"\Login Data", folderPath + @"\Login Data Copy");
             }
 
-            using (var connection = new SQLiteConnection("Data Source=" + FolderPath + @"\Login Data Copy"))
+            using (var connection = new SQLiteConnection("Data Source=" + folderPath + @"\Login Data Copy"))
             {
                 // Query used to get the database entries
 
@@ -68,7 +68,7 @@ namespace Simple_Recovery.Modules
 
             // Delete the database copy
 
-            File.Delete(FolderPath + @"\Login Data Copy");
+            File.Delete(folderPath + @"\Login Data Copy");
 
             return databaseEntries;
         }
