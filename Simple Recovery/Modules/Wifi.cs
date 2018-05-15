@@ -121,7 +121,7 @@ namespace Simple_Recovery.Modules
 
             foreach (var profile in profileList)
             {
-                passwords.AppendLine(profile + " " + GetPassword(profile));
+                passwords.AppendLine($"{profile} : {GetPassword(profile)}");
             }
             
             File.WriteAllText(path + @"\Wireless.txt", passwords.ToString());
