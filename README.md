@@ -7,5 +7,3 @@ When a session is launched vulnerabilities in the security of the storage of spe
 ### Supported sources
 * Google Chrome saved passwords
 * Wireless networks that the computer has signed in to at some point
-
-#### Please note I do not condone the useage of Simple Recovery for anything that may be considered illegal.
